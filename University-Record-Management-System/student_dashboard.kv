@@ -1,0 +1,177 @@
+<StudentDashboard>:
+    canvas.before:
+        Color:
+            rgba: app.background_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        BoxLayout:
+            size_hint_y: None
+            height: '0dp'
+
+        BoxLayout:
+            size_hint_y: None
+            height: '40dp'
+            spacing: 6
+            Button:
+                text: '[b]Profile[/b]'
+                markup: True
+                on_release: root.show_profile()
+            Button:
+                text: '[b]Course Catalog[/b]'
+                markup: True
+                on_release: root.show_catalog()
+            Button:
+                text: '[b]Results[/b]'
+                markup: True
+                on_release: root.show_results()
+
+        ScreenManager:
+            id: screen_manager
+
+            Screen:
+                name: 'profile'
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: 6
+                    spacing: 6
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '140dp'
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                id: name_label
+                                text: 'Name: -'
+                                halign: 'left'
+                                text_size: self.width, None
+                            Label:
+                                id: program_label
+                                text: 'Program: -'
+                                halign: 'left'
+                                text_size: self.width, None
+                            Label:
+                                id: semester_label
+                                text: 'Semester: -'
+                                halign: 'left'
+                                text_size: self.width, None
+                            Label:
+                                id: year_label
+                                text: 'Year: -'
+                                halign: 'left'
+                                text_size: self.width, None
+                            Label:
+                                id: date_label
+                                text: 'Date: -'
+                                halign: 'left'
+                                text_size: self.width, None
+                            Label:
+                                id: balance_label
+                                text: 'Tuition Balance: -'
+                                halign: 'left'
+                                text_size: self.width, None
+                        BoxLayout:
+                            orientation: 'vertical'
+                            size_hint_x: None
+                            width: '140dp'
+                            Image:
+                                id: profile_photo
+                                source: ''
+                    BoxLayout:
+                        size_hint_y: None
+                        height: '36dp'
+                        spacing: 6
+                        Label:
+                            id: gender_label
+                            text: 'Gender: -'
+                            halign: 'left'
+                            text_size: self.width, None
+                        Label:
+                            id: dob_label
+                            text: 'DOB: -'
+                            halign: 'left'
+                            text_size: self.width, None
+                        Label:
+                            id: registered_label
+                            text: 'Registered: -'
+                            halign: 'left'
+                            text_size: self.width, None
+                        Label:
+                            id: enrolled_label
+                            text: 'Enrolled: -'
+                            halign: 'left'
+                            text_size: self.width, None
+                        Button:
+                            text: 'Toggle Registered'
+                            on_release: root.toggle_registered()
+                    Label:
+                        text: 'Enrolled Courses'
+                        size_hint_y: None
+                        height: '24dp'
+                    ScrollView:
+                        GridLayout:
+                            id: courses_box
+                            cols: 1
+                            size_hint_y: None
+                            height: self.minimum_height
+
+            Screen:
+                name: 'catalog'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'Available Courses'
+                        size_hint_y: None
+                        height: '24dp'
+                    ScrollView:
+                        size_hint_x: 0.8
+                        pos_hint: {'center_x': 0.5}
+                        bar_width: 8
+                        GridLayout:
+                            id: catalog_box
+                            cols: 1
+                            size_hint_y: None
+                            height: self.minimum_height
+                            size_hint_x: 1
+
+            Screen:
+                name: 'results'
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: 6
+                    spacing: 6
+                    Label:
+                        id: gpa_label
+                        text: 'GPA: -'
+                        size_hint_y: None
+                        height: '28dp'
+                    ScrollView:
+                        GridLayout:
+                            id: results_box
+                            cols: 1
+                            size_hint_y: None
+                            height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: '40dp'
+            spacing: 6
+            Button:
+                text: 'Register Courses'
+                on_release: root.register_courses()
+            Button:
+                text: 'Pay Tuition'
+                on_release: root.pay_tuition()
+            Button:
+                text: 'Generate Report'
+                on_release: root.generate_report()
+            Button:
+                text: 'Logout'
+                on_release: root.logout()
